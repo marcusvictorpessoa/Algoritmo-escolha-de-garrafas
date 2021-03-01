@@ -1,0 +1,11 @@
+{
+  "name": "Algoritmo-escolha-de-garrafas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/marcusvictorpessoa/Algoritmo-escolha-de-garrafas.git",
+  "author": "Marcus Pessoa <marcusvictor00@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
