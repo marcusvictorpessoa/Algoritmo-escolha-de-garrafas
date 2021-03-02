@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
     return res.render('index')
 })
 
+//rota que retorna pagina de resultado
 app.post('resultado', (req, res) => {
     return res.render('resultado')
 })
