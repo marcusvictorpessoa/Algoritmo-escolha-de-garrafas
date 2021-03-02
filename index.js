@@ -10,17 +10,23 @@ const porta = 8023
 app.set('view engine', 'pug')
 app.set('views', 'views')
 
-//rota que retorna a pagina index
+// configuração da biblioteca de parsing do express
+app.use(express.urlencoded({extended: false}))
+
+// rota que retorna a pagina index
 app.get('/', (req, res) => {
     return res.render('index')
 })
 
-//rota que retorna pagina de resultado
-app.post('resultado', (req, res) => {
+// rota que retorna pagina de resultado
+app.post('/resultado', (req, res) => {
+    //console.log(req.body)
+    const { galao, garrafas } = req.body
+    console.log(`Galão: ${galao} Garrafas ${garrafas}`)
     return res.render('resultado')
 })
 
-//Executa o app
+// Execução do app
 app.listen(porta, () => {
     console.log(`Aplicação rodando em http://localhost:${porta}`)
 })
