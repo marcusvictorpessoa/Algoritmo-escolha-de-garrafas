@@ -1,6 +1,10 @@
 // importando express e engine de templates
 const express = require('express')
 const pug = require('pug')
+const algoritimo = require('./algoritimo.js')
+const  formata_dado = require('./formatadados')
+const formata_elementos = require('./formataelementos')
+const soma_vetor = require('./somavetor')
 
 // definindo app e porta
 const app = express()
@@ -22,9 +26,21 @@ app.get('/', (req, res) => {
 // rota que retorna pagina de resultado
 app.post('/resultado', (req, res) => {
     const titulo_pagina = "Resultado"
-    const { galao, garrafas } = req.body
-    let sobra = 0
-    return res.render('resultado', { titulo_pagina, galao, garrafas, sobra })
+    let { galao, garrafas } = req.body
+    galao = formata_dado(galao)
+    garrafas = formata_elementos(garrafas)
+    let mensagem
+    let soma_garrafas = 0
+    soma_garrafas = soma_vetor(garrafas)
+    if(galao > 0 && soma_garrafas > 0 && galao <= soma_garrafas){
+        let  array = algoritimo(galao, garrafas)
+        mensagem = `As garrafas ${array[0]} enchem o galao de ${galao} litros e sobra ${array[1]}`
+    }
+    else{
+        mensagem = "Entrada inválida"
+    }
+    
+    return res.render('resultado', { titulo_pagina, mensagem })
 })
 
 // Execução do app
